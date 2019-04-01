@@ -3,6 +3,8 @@ package com.example.kaustav.intelliaqua;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import java.net.URL;
+
 public class ArduinoWifiControlActivity extends AppCompatActivity {
 
     @Override
@@ -11,12 +13,12 @@ public class ArduinoWifiControlActivity extends AppCompatActivity {
         setContentView(R.layout.activity_arduino_wifi_control);
     }
 
-         class Background_get extends AsyncTask<String, Void, String> {
+         /* public class ArduinoWifiControlActivity extends AsyncTask<String, Void, String> {
             @Override
             protected String doInBackground(String... params) {
                 try {
                 /* Change the IP to the IP you set in the arduino sketch */
-                    URL url = new URL("http://192.168.1.177/?" + params[0]);
+                   /* URL url = new URL("http://192.168.1.177/?" + params[0]);
                     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
                     BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -34,6 +36,6 @@ public class ArduinoWifiControlActivity extends AppCompatActivity {
                 }
                 return null;
             }
-        }
+        }*/
 
 }
