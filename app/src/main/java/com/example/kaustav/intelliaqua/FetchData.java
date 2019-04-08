@@ -1,6 +1,7 @@
 package com.example.kaustav.intelliaqua;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 
 import org.json.JSONArray;
@@ -38,11 +39,13 @@ public class FetchData extends AsyncTask<Void, Void, Void> {
     String parsedSingleHumid = "";
     String parsedDataHumid = "";
 
+    public double Humidity;
+
     @Override
     protected Void doInBackground(Void... params) {
 
         try {
-            URL url= new URL("http://api.thingspeak.com/channels/414819/feeds.json?api_key=QSSI85KIN4SSKEF8&results=2");
+            URL url= new URL("https://api.thingspeak.com/channels/745773/feeds.json?api_key=J3PGU8A0PMMFMCU2&results=2");
 
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             InputStream inputStream = httpURLConnection.getInputStream();
@@ -87,9 +90,12 @@ public class FetchData extends AsyncTask<Void, Void, Void> {
                         "\n\t\tHumidity:" + JO1.getString("field2").toString() +" g/cubic m" + "\n\n";
                 parsedData = parsedData + parsedSingle;*/
 
-                parsedSingle = "Temperature: " + JO1.getString("field1").toString() + " °C\n" ;
+                //parsedSingle = "Temperature: " + JO1.getString("field1").toString() + " °C\n" ;
 
-                parsedSingle2 = "Humidity  : \n" + JO1.getString("field2").toString() + " %\n" ;
+                //parsedSingle2 = "Humidity  : \n" + JO1.getString("field2").toString() + " %\n" ;
+
+                parsedSingle = "Humidity    : " + JO1.getString("field1").toString() + " %\n" ;
+                parsedSingle2 = "Pump Status: \n" + JO1.getString("field2").toString()  ;
 
                 parsedSinglTemp=JO1.getString("field1").toString();
                 parsedSingleHumid=JO1.getString("field2").toString();
@@ -111,6 +117,7 @@ public class FetchData extends AsyncTask<Void, Void, Void> {
                 parsedData =  parsedSingle;
                 parsedData2 =  parsedSingle2;
 
+                Humidity=Double.parseDouble(parsedSinglTemp);
 
 
 
@@ -132,8 +139,28 @@ public class FetchData extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
+        //qSecondActivity obj=new SecondActivity();
         SecondActivity.Temp.setText(this.parsedData);
+        //obj.Temp.setText(this.parsedData);
         SecondActivity.Humid.setText(this.parsedData2);
+        //parsedSinglTemp=parsedSinglTemp+1;
+        //SecondActivity.Third.setText(this.parsedSinglTemp);
+
+
+        //Humidity=Humidity+1;
+        //SecondActivity.Third.setText(Double.toString(Humidity));
+
+
+        // We have Received the double data for humidity
+        // and now we will try to call ThirdActivity based on Humidity
+        // i> Equal to 1024 for test
+        // ii> Less Than 40 for actual humidity less
+        // TODO: 08-04-2019
+
+         Humidity=Double.parseDouble(parsedSinglTemp);
+
+
+
 
     }
 
