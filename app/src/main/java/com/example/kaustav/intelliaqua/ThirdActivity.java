@@ -2,6 +2,7 @@ package com.example.kaustav.intelliaqua;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -32,5 +33,13 @@ public class ThirdActivity extends AppCompatActivity {
 
 
         PumpMsg.setText("Do You WANT TO SWITCH ON THE PUMP ?");
+
+        ON.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //onClick();
+
+            }
+        });
     }
 }

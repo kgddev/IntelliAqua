@@ -100,6 +100,9 @@ public class FetchData extends AsyncTask<Void, Void, Void> {
                 parsedSinglTemp=JO1.getString("field1").toString();
                 parsedSingleHumid=JO1.getString("field2").toString();
 
+
+                //SecondActivity obj =new SecondActivity();
+                //obj.test(Double.parseDouble(parsedSinglTemp));
                 /*double t=Double.parseDouble(parsedDataTemp);
                 double h=Double.parseDouble(parsedDataHumid);
 
@@ -117,7 +120,8 @@ public class FetchData extends AsyncTask<Void, Void, Void> {
                 parsedData =  parsedSingle;
                 parsedData2 =  parsedSingle2;
 
-                Humidity=Double.parseDouble(parsedSinglTemp);
+
+                //Humidity=Double.parseDouble(parsedSinglTemp);
 
 
 
@@ -140,11 +144,11 @@ public class FetchData extends AsyncTask<Void, Void, Void> {
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
         //qSecondActivity obj=new SecondActivity();
-        SecondActivity.Temp.setText(this.parsedData);
+        SecondActivity.Temp.setText(this.parsedData);// Sets the Humidity
         //obj.Temp.setText(this.parsedData);
-        SecondActivity.Humid.setText(this.parsedData2);
+        SecondActivity.Humid.setText(this.parsedData2);// Shows Pump Status
         //parsedSinglTemp=parsedSinglTemp+1;
-        //SecondActivity.Third.setText(this.parsedSinglTemp);
+        SecondActivity.Third.setText(this.parsedSinglTemp);// Temporary third option
 
 
         //Humidity=Humidity+1;
@@ -157,7 +161,7 @@ public class FetchData extends AsyncTask<Void, Void, Void> {
         // ii> Less Than 40 for actual humidity less
         // TODO: 08-04-2019
 
-         Humidity=Double.parseDouble(parsedSinglTemp);
+         //Humidity=Double.parseDouble(parsedSinglTemp);
 
 
 
