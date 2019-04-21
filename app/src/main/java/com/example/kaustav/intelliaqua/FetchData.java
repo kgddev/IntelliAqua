@@ -34,7 +34,7 @@ public class FetchData extends AsyncTask<Void, Void, Void> {
     String parsedData2 = "";
 
     String parsedSinglTemp = "";
-    String parsedDataTemp = "";
+    String parsedDatapump = "";
 
     String parsedSingleHumid = "";
     String parsedDataHumid = "";
@@ -93,9 +93,13 @@ public class FetchData extends AsyncTask<Void, Void, Void> {
                 //parsedSingle = "Temperature: " + JO1.getString("field1").toString() + " °C\n" ;
 
                 //parsedSingle2 = "Humidity  : \n" + JO1.getString("field2").toString() + " %\n" ;
-
+                parsedDatapump = JO1.getString("field2").toString();
+                if(parsedDatapump.equals("0"))
+                    parsedDatapump = "off";
+                else
+                    parsedDatapump = "on";
                 parsedSingle = "Humidity    : " + JO1.getString("field1").toString() + " %\n" ;
-                parsedSingle2 = "Pump Status: \n" + JO1.getString("field2").toString()  ;
+                parsedSingle2 = "Pump Status: \n" + parsedDatapump ;
 
                 parsedSinglTemp=JO1.getString("field1").toString();
                 parsedSingleHumid=JO1.getString("field2").toString();

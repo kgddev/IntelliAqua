@@ -3,9 +3,22 @@ package com.example.kaustav.intelliaqua;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
+
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 public class SecondActivity extends AppCompatActivity {
 
@@ -57,10 +70,6 @@ public class SecondActivity extends AppCompatActivity {
 
 
 
-
-
-
-
         /*if (humidity ==0.0)
         {
             Intent intent=new Intent(SecondActivity.this,ThirdActivity.class);
@@ -79,9 +88,8 @@ public class SecondActivity extends AppCompatActivity {
 
 
 
-         if(humidity<10.0)
-        {
-            //Display the alert for opinion
+         if(humidity < 30.0) {
+            /* Display the alert for opinion */
             AlertDialog.Builder builder;
             builder = new AlertDialog.Builder(SecondActivity.this);
             builder.setMessage("Do You want to Switch On The Pump : Yes or No ? ");
@@ -91,15 +99,13 @@ public class SecondActivity extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
 
-                    //if(which==1)
-                    //{
-                         //Set JSON Pump Satus to one
-
-
+                    if(which==1)
+                    {
+                        sendDataToServer(which);//Set JSON Pump Satus to one
                         Intent intent=new Intent(SecondActivity.this,ThirdActivity.class);
                         startActivity(intent);
-                        //startActivity(new Intent(SecondActivity.this,SecondActivity.class));
-                    //}
+                        startActivity(new Intent(SecondActivity.this,SecondActivity.class));
+                    }
 
                 }
             });
@@ -109,15 +115,16 @@ public class SecondActivity extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
 
-                    //if(which==0)
-                    //{
+                    if(which==0)
+                    {
+                        sendDataToServer(which);
                         //Intent intent=new Intent(SecondActivity.this,ThirdActivity.class);
                         //startActivity(intent);
                         //startActivity(new Intent(SecondActivity.this,ThirdActivity.class));
                         //Intent intent=new Intent(SecondActivity.this,ArduinoWifiControlActivity.class);
                         //startActivity(intent);
                         //startActivity(new Intent(SecondActivity.this,SecondActivity.class));
-                    //}
+                    }
 
 
                 }
@@ -127,6 +134,10 @@ public class SecondActivity extends AppCompatActivity {
             alertDialog.setCancelable(false);
             alertDialog.show();
         }
+
+
+
+
 
        /* else if (humidity>34)
         {
@@ -186,5 +197,51 @@ public class SecondActivity extends AppCompatActivity {
 
 
 
+    }
+    private String formatDataAsJson(int w){
+        final JSONObject root = new JSONObject();
+        try {
+            if(w==1) {
+                root.put("field3", "1");
+            }
+            else {
+                root.put("field3", "0");
+            }
+            return root.toString();
+        } catch (JSONException e) {
+            Log.d("JWP","CAN'T FORMAT JSON");
+        }
+        return null;
+    }
+    private void sendDataToServer(int w){
+        final String json = formatDataAsJson(w);
+
+
+        new AsyncTask<Void,Void,String>(){
+            @Override
+            protected String doInBackground(Void... voids) {
+                return getServerResponse(json);
+            }
+
+
+        }.execute();
+    }
+    private String getServerResponse(String json) {
+        HttpPost post=new HttpPost("https://api.thingspeak.com/update?api_key=EGGJKPU3QDCY8UAT");
+        try {
+            StringEntity entity=new StringEntity(json);
+            post.setEntity(entity);
+            DefaultHttpClient client = new DefaultHttpClient();
+            BasicResponseHandler handler=new BasicResponseHandler();
+            String response = client.execute(post,handler);
+            return response;
+        } catch (UnsupportedEncodingException e) {
+            Log.d("JWP",e.toString());
+        } catch (ClientProtocolException e) {
+            Log.d("JWP",e.toString());
+        } catch (IOException e) {
+            Log.d("JWP",e.toString());
+        }
+        return "Unable to contact server";
     }
 }
