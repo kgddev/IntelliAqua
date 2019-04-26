@@ -37,7 +37,7 @@ public class SecondActivity extends AppCompatActivity {
         Temp=(TextView)findViewById(R.id.tvTemp);
         Humid=(TextView)findViewById(R.id.tvHumid);
 
-        Third=(TextView)findViewById(R.id.tv3);
+        //Third=(TextView)findViewById(R.id.tv3);
 
         Electricity=(Button) findViewById(R.id.b1);
 
@@ -119,6 +119,11 @@ public class SecondActivity extends AppCompatActivity {
         process.execute();
         try {
             Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        /*try {
+            Thread.sleep(200);
             TestHumid=Third.getText().toString();
 
             if(TestHumid!=null && !TestHumid.isEmpty() &&!TestHumid.equals("null") && !TestHumid.equals(""))
@@ -174,7 +179,7 @@ public class SecondActivity extends AppCompatActivity {
 
 
 
-        if(humidity<10.0)
+       /* if(humidity<10.0)
         {
             //Display the alert for opinion
             AlertDialog.Builder builder;
@@ -221,6 +226,6 @@ public class SecondActivity extends AppCompatActivity {
             AlertDialog alertDialog=builder.create();
             alertDialog.setCancelable(false);
             alertDialog.show();
-        }
+        } */
     }
 }

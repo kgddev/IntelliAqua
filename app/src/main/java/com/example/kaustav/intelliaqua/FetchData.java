@@ -94,8 +94,8 @@ public class FetchData extends AsyncTask<Void, Void, Void> {
 
                 //parsedSingle2 = "Humidity  : \n" + JO1.getString("field2").toString() + " %\n" ;
 
-                parsedSingle = "Humidity    : " + JO1.getString("field1").toString() + " %\n" ;
-                parsedSingle2 = "Pump Status: \n" + JO1.getString("field2").toString()  ;
+                parsedSingle = "Humidity:\n"+ JO1.getString("field1").toString() + " %\n" ;
+                parsedSingle2 = "Pump Status: \n"+ JO1.getString("field2").toString()  ;
 
                 parsedSinglTemp=JO1.getString("field1").toString();
                 parsedSingleHumid=JO1.getString("field2").toString();
@@ -150,7 +150,7 @@ public class FetchData extends AsyncTask<Void, Void, Void> {
         //obj.Temp.setText(this.parsedData);
         SecondActivity.Humid.setText(this.parsedData2);// Shows Pump Status
         //parsedSinglTemp=parsedSinglTemp+1;
-        SecondActivity.Third.setText(this.parsedSinglTemp);// Temporary third option
+       // SecondActivity.Third.setText(this.parsedSinglTemp);// Temporary third option
 
 
         //Humidity=Humidity+1;
