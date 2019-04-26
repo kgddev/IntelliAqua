@@ -11,6 +11,22 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".SplashScreenActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <activity android:name=".MainActivity" />
+        <activity android:name=".SecondActivity" />
+
+
+        <!--
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,17 +38,19 @@
         <activity android:name=".SecondActivity" />
         <activity android:name=".SplashScreenActivity">
 
-            <!--
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            -->
+
+
+        </activity>  -->
+        <activity android:name=".ArduinoWifiControlActivity" />
+        <activity android:name=".ThirdActivity">
 
         </activity>
-        <activity android:name=".ArduinoWifiControlActivity" />
-        <activity android:name=".ThirdActivity"></activity>
     </application>
 
 </manifest>

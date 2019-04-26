@@ -120,6 +120,8 @@ public class FetchData extends AsyncTask<Void, Void, Void> {
                 parsedData =  parsedSingle;
                 parsedData2 =  parsedSingle2;
 
+                //HumidWed=Double.parseDouble(parsedSinglTemp);
+
 
                 //Humidity=Double.parseDouble(parsedSinglTemp);
 
