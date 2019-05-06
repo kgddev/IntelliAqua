@@ -3,6 +3,7 @@
     package="com.example.kaustav.intelliaqua">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
 
     <!-- android:roundIcon="@mipmap/ic_launcher_round" Hey -->
     <application
