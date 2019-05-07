@@ -94,8 +94,21 @@ public class FetchData extends AsyncTask<Void, Void, Void> {
 
                 //parsedSingle2 = "Humidity  : \n" + JO1.getString("field2").toString() + " %\n" ;
 
-                parsedSingle = "Humidity:\n"+ JO1.getString("field1").toString() + " %\n" ;
-                parsedSingle2 = "Pump Status: \n"+ JO1.getString("field2").toString()  ;
+                String b=JO1.getString("field1").toString();
+                //parsedSingle = "Humidity:\n"+ JO1.getString("field1").toString() + " %\n" ;
+                parsedSingle = "       Humidity:\n"+"            "+b+"%";
+
+                String a=JO1.getString("field2").toString()  ;
+                int p=Integer.parseInt(a);
+                //parsedSingle2 = "Pump Status: \n"+ JO1.getString("field2").toString()  ;
+                if(p==1)
+                parsedSingle2 = "   Pump Status: \n"+"          ON";
+                else if(p==0)
+                parsedSingle2 = "   Pump Status: \n"+"          OFF";
+                else{
+
+                }
+
 
                 parsedSinglTemp=JO1.getString("field1").toString();
                 parsedSingleHumid=JO1.getString("field2").toString();

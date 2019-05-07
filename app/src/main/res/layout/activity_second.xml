@@ -44,19 +44,6 @@
         app:layout_constraintVertical_bias="0.068" />
 
     <Button
-        android:id="@+id/b1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="33dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:text="Calculate Bill"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.423"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
-    <Button
         android:id="@+id/PumpON"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
