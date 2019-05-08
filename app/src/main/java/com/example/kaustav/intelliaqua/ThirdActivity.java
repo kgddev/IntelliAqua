@@ -11,10 +11,10 @@ public class ThirdActivity extends AppCompatActivity {
 
     public static TextView PumpMsg;
 
-    public static Button ON;
-    public static Button OFF;
+    //public static Button ON;
+    //public static Button OFF;
 
-    public static ToggleButton Test;
+    //public static ToggleButton Test;
 
 
 
@@ -24,22 +24,22 @@ public class ThirdActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third);
 
-        PumpMsg=(TextView)findViewById(R.id.tvPumpMessage);
+        //PumpMsg=(TextView)findViewById(R.id.tvUnits);
 
-        ON=(Button)findViewById(R.id.onBtn);
-        OFF=(Button)findViewById(R.id.off_Btn);
+        //ON=(Button)findViewById(R.id.onBtn);
+        //OFF=(Button)findViewById(R.id.off_Btn);
 
-        Test=(ToggleButton)findViewById(R.id.tbtnTest);
+        //Test=(ToggleButton)findViewById(R.id.tbtnTest);
 
 
-        PumpMsg.setText("Do You WANT TO SWITCH ON THE PUMP ?");
+        //PumpMsg.setText("Do You WANT TO SWITCH ON THE PUMP ?");
 
-        ON.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        //ON.setOnClickListener(new View.OnClickListener() {
+        //    @Override
+         //   public void onClick(View v) {
                 //onClick();
 
-            }
-        });
+        //    }
+        //});
     }
 }

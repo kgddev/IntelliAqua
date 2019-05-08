@@ -7,24 +7,32 @@ import android.view.Window;
 import android.view.WindowManager;
 
 public class SplashScreenActivity extends AppCompatActivity {
-    private int SLEEP_TIMER=30;
+    private int SLEEP_TIMER=3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView(R.layout.activity_splash_screen);
+        getSupportActionBar().hide();
+        LogoLauncher logo=new LogoLauncher();
+        logo.start();
+
+
+
+       /* supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash_screen);
         getSupportActionBar().hide();
 
 
         LogoLauncher logo=new LogoLauncher();
-        logo.start();
+        logo.start();*/
 
     }
 
-    private class LogoLauncher extends Thread{
+   private class LogoLauncher extends Thread{
         public void run()
         {
             try

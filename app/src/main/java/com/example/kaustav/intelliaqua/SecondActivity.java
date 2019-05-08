@@ -3,23 +3,12 @@ package com.example.kaustav.intelliaqua;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
-
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.BasicResponseHandler;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 
 public class SecondActivity extends AppCompatActivity {
 
@@ -27,11 +16,14 @@ public class SecondActivity extends AppCompatActivity {
     //public  TextView Temp;
     public static TextView Humid;
 
+    public static double HumidWed;
+
     //public static double TestHumid;
     public static String TestHumid;
     public static double humidity;// To obtain the humidity from fetch data and use it to call the dialog box
 
     public static TextView Third;
+    private Button Electricity;
 
     public void test(double b)
     {
@@ -43,30 +35,205 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
-        Temp = (TextView) findViewById(R.id.tvTemp);
-        Humid = (TextView) findViewById(R.id.tvHumid);
+        Temp=(TextView)findViewById(R.id.tvTemp);
+        Humid=(TextView)findViewById(R.id.tvHumid);
 
-        Third = (TextView) findViewById(R.id.tv3);
+        //Third=(TextView)findViewById(R.id.tv3);
 
-        content();
+        Electricity=(Button) findViewById(R.id.b1);
+
+        Electricity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1=new Intent(SecondActivity.this,ThirdActivity.class);
+                startActivity(intent1);
+
+            }
+        });
+
+
+
+
+       /* else if (humidity>34)
+        {
+            //Display the alert for opinion
+            AlertDialog.Builder builder3;
+            builder3 = new AlertDialog.Builder(SecondActivity.this);
+            builder3.setMessage("Do You want to Switch Off The Pump : Yes or No ? ");
+            builder3.setTitle("Pump Alert");
+
+            builder3.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    AlertDialog.Builder builder2;
+                    builder2 = new AlertDialog.Builder(SecondActivity.this);
+                    builder2.setMessage("OK !!! ");
+                    builder2.setTitle("Pump Alert 2");
+                    if(which==1)
+                    {
+                        // Set JSON Pump Satus to one
+
+
+                    Intent intent=new Intent(SecondActivity.this,ThirdActivity.class);
+                    startActivity(intent);
+                        startActivity(new Intent(SecondActivity.this,SecondActivity.class));
+                    }
+                }
+            });
+
+
+            builder3.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if(which==0)
+                    {
+                        //Intent intent=new Intent(SecondActivity.this,ThirdActivity.class);
+                        //startActivity(intent);
+                        //startActivity(new Intent(SecondActivity.this,ThirdActivity.class));
+                        Intent intent=new Intent(SecondActivity.this,ArduinoWifiControlActivity.class);
+                        startActivity(intent);
+                        startActivity(new Intent(SecondActivity.this,SecondActivity.class));
+                    //}
+                }
+            });
+
+            AlertDialog alertDialog=builder3 .create();
+            alertDialog.setCancelable(false);
+            alertDialog.show();
+        }*/
+                    // Hello
+                    /* jjgjfgjmh */
+
+        //Temp.setText("Number of Attempts Remaining: "+Integer.toString(count)); */
+
+        // TODO: 08-04-2019
+        // We will try to access Humidity from here and try to call ThirdActivity
+
+
+        work();
+
     }
-    public void content(){
+
+    private void work() {
         FetchData process = new FetchData();
         process.execute();
-        refresh(2000);
+        refresh(1000);
     }
 
     private void refresh(long i) {
-        FetchData process = new FetchData();
-        process.execute();
         final Handler handler=new Handler();
         final Runnable runnable=new Runnable() {
             @Override
             public void run() {
-                content();
+                work();
             }
         };
         handler.postDelayed(runnable,i);
     }
+        /*try {
+            Thread.sleep(200);
+            TestHumid=Third.getText().toString();
+
+            if(TestHumid!=null && !TestHumid.isEmpty() &&!TestHumid.equals("null") && !TestHumid.equals(""))
+            {
+                humidity=0.0;
+
+            }
+
+            else
+                humidity=Double.parseDouble(TestHumid);
+
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        /*FetchData process = new FetchData();
+        process.execute();*/
+
+       /* WriteData obj =new WriteData();
+        obj.execute();*/
+
+
+
+        //Writedata2 obj=new Writedata2();
+        //obj.execute();
+        //TestHumid=Double.parseDouble(process.parsedSinglTemp);
+
+
+
+
+
+
+
+
+
+
+        /*if (humidity ==0.0)
+        {
+            Intent intent=new Intent(SecondActivity.this,ThirdActivity.class);
+            startActivity(intent);
+        }*/
+        //double humidity2=process.Humidity+100000;
+        //String s=Double.toString(humidity2);
+
+        //Third.setText(s );
+        //double t=Double.parseDouble(process.parsedDataTemp);
+        //double h=Double.parseDouble(process.parsedDataHumid);
+        /*   int t=Integer.parseInt(process.parsedDataTemp);*/
+
+        //if(h<=30)
+        //if(t==-999)
+
+
+
+       /* if(humidity<10.0)
+        {
+            //Display the alert for opinion
+            AlertDialog.Builder builder;
+            builder = new AlertDialog.Builder(SecondActivity.this);
+            builder.setMessage("Do You want to Switch On The Pump : Yes or No ? ");
+            builder.setTitle("Pump Alert");
+
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    //if(which==1)
+                    //{
+                    //Set JSON Pump Satus to one
+
+
+                    Intent intent=new Intent(SecondActivity.this,ThirdActivity.class);
+                    startActivity(intent);
+                    //startActivity(new Intent(SecondActivity.this,SecondActivity.class));
+                    //}
+
+                }
+            });
+
+
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    //if(which==0)
+                    //{
+                    //Intent intent=new Intent(SecondActivity.this,ThirdActivity.class);
+                    //startActivity(intent);
+                    //startActivity(new Intent(SecondActivity.this,ThirdActivity.class));
+                    //Intent intent=new Intent(SecondActivity.this,ArduinoWifiControlActivity.class);
+                    //startActivity(intent);
+                    //startActivity(new Intent(SecondActivity.this,SecondActivity.class));
+                    //}
+
+
+                }
+            });
+
+            AlertDialog alertDialog=builder.create();
+            alertDialog.setCancelable(false);
+            alertDialog.show();
+        } */
 
 }

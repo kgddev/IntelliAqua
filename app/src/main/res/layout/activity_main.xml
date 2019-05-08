@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ABEBC6"
-    tools:context="com.example.kaustav.intelliaqua.MainActivity">
+    tools:context="com.example.kaustav.intelliaqua.MainActivity"
+    >
 
     <EditText
         android:id="@+id/etName"
