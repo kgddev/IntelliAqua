@@ -18,14 +18,14 @@ import java.util.UUID;
 
 public class SecondActivity extends AppCompatActivity {
 
-    public static TextView SMoist;
-    public  static TextView RTime;
-    public static TextView PumpStat;
+    public static TextView SMoist; // To display Soil Moisture
+    public  static TextView RTime;// Dispaly Data Collection Time and Date
+    public static TextView PumpStat; // Display Pump Status
 
     //public static double HumidWed;
 
     //public static double TestHumid;
-    public static String TestHumid;
+    //public static String TestHumid;
     //public static double humidity;// To obtain the humidity from fetch data and use it to call the dialog box
 
     //public static TextView Third;
