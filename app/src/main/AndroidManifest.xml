@@ -49,10 +49,6 @@
 
 
         </activity>  -->
-        <activity android:name=".ArduinoWifiControlActivity" />
-        <activity android:name=".ThirdActivity">
-
-        </activity>
     </application>
 
 </manifest>
