@@ -1,7 +1,4 @@
 package com.example.kaustav.intelliaqua;
-
-import android.app.AlertDialog;
-import android.content.Intent;
 import android.os.AsyncTask;
 
 import org.json.JSONArray;
@@ -23,8 +20,6 @@ import java.net.URL;
 
 public class FetchData extends AsyncTask<Void, Void, Void> {
     String data="";
-    String dataParsed="";
-    String singleParsed="";
     int hr,min,sec;
     String time="";
     String date="";
@@ -34,10 +29,8 @@ public class FetchData extends AsyncTask<Void, Void, Void> {
     String parsedData2 = "";
 
     String parsedSinglTemp = "";
-    String parsedDataTemp = "";
-
     String parsedSingleHumid = "";
-    String parsedDataHumid = "";
+    String parsedDate = "";
 
     public double Humidity;
 
@@ -52,22 +45,12 @@ public class FetchData extends AsyncTask<Void, Void, Void> {
             BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream));
 
             String line ="";
-            while(line !=null)
+            while(line != null)
             {
                 line=bufferedReader.readLine();
                 data=data+line;
 
             }
-            /*JSONArray JA = new JSONArray(data);
-
-            for(int i=0;i<JA.length();i++)
-            {
-                JSONObject JO= (JSONObject) JA.get(i);
-                singleParsed="Temperature"+JO.get("field1")+"\n"+
-                             "Humidity"+JO.get("field2")+"\n";
-
-                dataParsed=dataParsed+singleParsed;
-            }*/
 
             JSONObject JO = (JSONObject) new JSONTokener(data).nextValue();
             JSONArray JA = (JSONArray) JO.get("feeds");
@@ -85,48 +68,27 @@ public class FetchData extends AsyncTask<Void, Void, Void> {
                     hr++;
                 }
                 hr=hr+5;
-                /*parsedSingle = "Collected on : "+ date +" , "+hr+":"+min+":"+sec+" hrs\n"+
-                        "\t\tTemperature: " + JO1.getString("field1").toString() + " °C" +
-                        "\n\t\tHumidity:" + JO1.getString("field2").toString() +" g/cubic m" + "\n\n";
-                parsedData = parsedData + parsedSingle;*/
+                parsedDate = "Collected on : "+ date +" , \n    "+hr+":"+min+":"+sec+" hrs\n";
+                String b=JO1.getString("field1").toString();
+                parsedSingle = "       Humidity\n"+"            "+b+"%";
 
-                //parsedSingle = "Temperature: " + JO1.getString("field1").toString() + " °C\n" ;
+                String a=JO1.getString("field2").toString()  ;
+                int p=Integer.parseInt(a);
+                //parsedSingle2 = "Pump Status: \n"+ JO1.getString("field2").toString()  ;
+                if(p==1)
+                parsedSingle2 = "   Pump Status: \n"+"          ON";
+                else if(p==0)
+                parsedSingle2 = "   Pump Status: \n"+"          OFF";
+                else{
 
-                //parsedSingle2 = "Humidity  : \n" + JO1.getString("field2").toString() + " %\n" ;
+                }
 
-                parsedSingle = "Humidity:\n"+ JO1.getString("field1").toString() + " %\n" ;
-                parsedSingle2 = "Pump Status: \n"+ JO1.getString("field2").toString()  ;
 
                 parsedSinglTemp=JO1.getString("field1").toString();
                 parsedSingleHumid=JO1.getString("field2").toString();
 
-
-                //SecondActivity obj =new SecondActivity();
-                //obj.test(Double.parseDouble(parsedSinglTemp));
-                /*double t=Double.parseDouble(parsedDataTemp);
-                double h=Double.parseDouble(parsedDataHumid);
-
-                if((t>=25)||(h<=30))
-                {
-                    //Dispaly the alert for opinion
-                    AlertDialog.Builder builder;
-                    builder = new AlertDialog.Builder(SecondActivity.this,FetchData.class);
-                }*/
-
-
-
-                //parsedData = parsedData + parsedSingle;
-
                 parsedData =  parsedSingle;
                 parsedData2 =  parsedSingle2;
-
-                //HumidWed=Double.parseDouble(parsedSinglTemp);
-
-
-                //Humidity=Double.parseDouble(parsedSinglTemp);
-
-
-
             }
 
 
@@ -145,17 +107,9 @@ public class FetchData extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-        //qSecondActivity obj=new SecondActivity();
         SecondActivity.Temp.setText(this.parsedData);// Sets the Humidity
-        //obj.Temp.setText(this.parsedData);
-        SecondActivity.Humid.setText(this.parsedData2);// Shows Pump Status
-        //parsedSinglTemp=parsedSinglTemp+1;
-       // SecondActivity.Third.setText(this.parsedSinglTemp);// Temporary third option
-
-
-        //Humidity=Humidity+1;
-        //SecondActivity.Third.setText(Double.toString(Humidity));
-
+        SecondActivity.Motor.setText(this.parsedData2);// Shows Pump Status
+        SecondActivity.Date.setText(this.parsedDate);
 
         // We have Received the double data for humidity
         // and now we will try to call ThirdActivity based on Humidity

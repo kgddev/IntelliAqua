@@ -18,18 +18,6 @@ public class SplashScreenActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         LogoLauncher logo=new LogoLauncher();
         logo.start();
-
-
-
-       /* supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_splash_screen);
-        getSupportActionBar().hide();
-
-
-        LogoLauncher logo=new LogoLauncher();
-        logo.start();*/
-
     }
 
    private class LogoLauncher extends Thread{

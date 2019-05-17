@@ -39,32 +39,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
-
-
-
-    private void validate (String uName,String uPassword)
-    {
-        if(uName.equals("Admin") && uPassword.equals("12345"))
-        {
-            Intent intent=new Intent(MainActivity.this,SecondActivity.class);
+    private void validate (String uName,String uPassword) {
+        if(uName.equals("Admin") && uPassword.equals("12345")) {
+            Intent intent=new Intent(MainActivity.this,ThirdActivity.class);
             startActivity(intent);
         }
 
-        else
-            {
-               count--;
-
-                Info.setText("Number of Attempts Remaining: "+Integer.toString(count));
-
-                if (count==0)
-                {
-                    //Disable button
-                    Login.setEnabled(false);
-
-                }
-            }
+        else {
+            count--;
+            Info.setText("Number of Attempts Remaining: " + Integer.toString(count));
+            if (count == 0)
+                Login.setEnabled(false);//Disable button
+        }
     }
 }

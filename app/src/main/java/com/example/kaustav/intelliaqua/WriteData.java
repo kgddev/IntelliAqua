@@ -122,7 +122,7 @@ public class WriteData extends AsyncTask<Void, Void, Void> {
         //qSecondActivity obj=new SecondActivity();
         SecondActivity.Temp.setText(this.parsedData);// Sets the Humidity
         //obj.Temp.setText(this.parsedData);
-        SecondActivity.Humid.setText(this.parsedData2);// Shows Pump Status
+        SecondActivity.Motor.setText(this.parsedData2);// Shows Pump Status
         //parsedSinglTemp=parsedSinglTemp+1;
         SecondActivity.Third.setText(this.parsedSinglTemp);// Temporary third option
 
